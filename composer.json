@@ -1,0 +1,54 @@
+{
+  "name": "aldeebhasan/fast-recommender",
+  "description": "This package will allow you to make fast recommendation based on custom inputs",
+  "type": "library",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "recommendation",
+    "fast recommendation",
+    "collaborative filtering",
+    "product recommendations",
+    "statistics",
+    "laravel"
+  ],
+  "authors": [
+    {
+      "name": "Hasan Deeb",
+      "email": "aldeeb.91@gmail.com",
+      "homepage": "https://hasan-deeb.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Aldeebhasan\\FastRecommender\\": "src/"
+    },
+    "files": [
+      "src/Utilities/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Aldeebhasan\\FastBi\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.4",
+    "illuminate/support": "10.x-dev",
+    "friendsofphp/php-cs-fixer": "dev-master"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Aldeebhasan\\FastRecommender\\FastRecommenderProvider"
+      ],
+      "aliases": {
+      }
+    }
+  }
+}
