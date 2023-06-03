@@ -1,8 +1,8 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Contracts;
+namespace Aldeebhasan\LaravelCF\Contracts;
 
-use Aldeebhasan\FastRecommender\Enums\MissingValue;
+use Aldeebhasan\LaravelCF\Enums\MissingValue;
 
 interface RecommenderIU
 {

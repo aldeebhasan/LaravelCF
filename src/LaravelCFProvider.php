@@ -4,7 +4,7 @@ namespace Aldeebhasan\FastRecommender;
 
 use Illuminate\Support\ServiceProvider;
 
-class FastRecommenderProvider extends ServiceProvider
+class LaravelCFProvider extends ServiceProvider
 {
     public function boot()
     {

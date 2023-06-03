@@ -1,9 +1,9 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Similarity;
+namespace Aldeebhasan\LaravelCF\Similarity;
 
-use Aldeebhasan\FastRecommender\Contracts\SimilarityIU;
-use Aldeebhasan\FastRecommender\Enums\MissingValue;
+use Aldeebhasan\LaravelCF\Contracts\SimilarityIU;
+use Aldeebhasan\LaravelCF\Enums\MissingValue;
 
 abstract class AbstractSimilarity implements SimilarityIU
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Contracts;
+namespace Aldeebhasan\LaravelCF\Contracts;
 
 interface SimilarityIU
 {

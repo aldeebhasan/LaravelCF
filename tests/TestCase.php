@@ -1,6 +1,6 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Test;
+namespace Aldeebhasan\LaravelCF\Test;
 
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Schema\Blueprint;

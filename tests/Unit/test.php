@@ -1,11 +1,11 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Test\Unit;
+namespace Aldeebhasan\LaravelCF\Test\Unit;
 
-use Aldeebhasan\FastRecommender\Model\Relation;
-use Aldeebhasan\FastRecommender\RecommenderManager;
-use Aldeebhasan\FastRecommender\Similarity\SlopeOne;
-use Aldeebhasan\FastRecommender\Test\TestCase;
+use Aldeebhasan\LaravelCF\Models\Relation;
+use Aldeebhasan\LaravelCF\RecommenderManager;
+use Aldeebhasan\LaravelCF\Similarity\SlopeOne;
+use Aldeebhasan\LaravelCF\Test\TestCase;
 
 class test extends TestCase
 {

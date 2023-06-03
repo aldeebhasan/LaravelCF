@@ -1,12 +1,12 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Recommender;
+namespace Aldeebhasan\LaravelCF\Recommender;
 
-use Aldeebhasan\FastRecommender\Contracts\RecommenderIU;
-use Aldeebhasan\FastRecommender\Contracts\SimilarityIU;
-use Aldeebhasan\FastRecommender\Enums\MissingValue;
-use Aldeebhasan\FastRecommender\Model\Relation;
-use Aldeebhasan\FastRecommender\Similarity\Cosine;
+use Aldeebhasan\LaravelCF\Contracts\RecommenderIU;
+use Aldeebhasan\LaravelCF\Contracts\SimilarityIU;
+use Aldeebhasan\LaravelCF\Enums\MissingValue;
+use Aldeebhasan\LaravelCF\Models\Relation;
+use Aldeebhasan\LaravelCF\Similarity\Cosine;
 use http\Exception\InvalidArgumentException;
 
 class AbstractRecommender implements RecommenderIU

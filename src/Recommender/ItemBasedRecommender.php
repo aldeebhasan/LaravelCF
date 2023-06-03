@@ -1,6 +1,6 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Recommender;
+namespace Aldeebhasan\LaravelCF\Recommender;
 
 class ItemBasedRecommender extends AbstractRecommender
 {

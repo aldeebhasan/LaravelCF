@@ -1,6 +1,6 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Similarity;
+namespace Aldeebhasan\LaravelCF\Similarity;
 
 class SlopeOne extends AbstractSimilarity
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Enums;
+namespace Aldeebhasan\LaravelCF\Enums;
 
 enum MissingValue
 {

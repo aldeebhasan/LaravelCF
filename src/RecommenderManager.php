@@ -1,11 +1,11 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender;
+namespace Aldeebhasan\LaravelCF;
 
-use Aldeebhasan\FastRecommender\Contracts\RecommenderIU;
-use Aldeebhasan\FastRecommender\Model\Relation;
-use Aldeebhasan\FastRecommender\Recommender\ItemBasedRecommender;
-use Aldeebhasan\FastRecommender\Recommender\UserBasedRecommender;
+use Aldeebhasan\LaravelCF\Contracts\RecommenderIU;
+use Aldeebhasan\LaravelCF\Models\Relation;
+use Aldeebhasan\LaravelCF\Recommender\ItemBasedRecommender;
+use Aldeebhasan\LaravelCF\Recommender\UserBasedRecommender;
 use Illuminate\Database\Eloquent\Model;
 
 class RecommenderManager

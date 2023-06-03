@@ -1,6 +1,6 @@
 <?php
 
-namespace Aldeebhasan\FastRecommender\Model;
+namespace Aldeebhasan\LaravelCF\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

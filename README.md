@@ -8,7 +8,7 @@ Installation
 Install using composer:
 
 ```bash
-composer require aldeebhasan/
+composer require aldeebhasan/laravelcf
 ```
 
 

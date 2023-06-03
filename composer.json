@@ -1,5 +1,5 @@
 {
-  "name": "aldeebhasan/fast-recommender",
+  "name": "aldeebhasan/laravelcf",
   "description": "This package will allow you to make fast recommendation based on custom inputs",
   "type": "library",
   "version": "1.0.0",
@@ -22,7 +22,7 @@
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "Aldeebhasan\\FastRecommender\\": "src/"
+      "Aldeebhasan\\LaravelCF\\": "src/"
     },
     "files": [
       "src/Utilities/helpers.php"
@@ -30,7 +30,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Aldeebhasan\\FastRecommender\\Test\\": "tests/"
+      "Aldeebhasan\\LaravelCF\\Test\\": "tests/"
     }
   },
   "require": {
@@ -46,7 +46,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Aldeebhasan\\FastRecommender\\FastRecommenderProvider"
+        "Aldeebhasan\\LaravelCF\\LaravelCFProvider"
       ],
       "aliases": {
       }
