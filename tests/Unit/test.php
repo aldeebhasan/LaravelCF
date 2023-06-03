@@ -2,11 +2,9 @@
 
 namespace Aldeebhasan\FastRecommender\Test\Unit;
 
-use Aldeebhasan\FastRecommender\Enums\MissingValue;
 use Aldeebhasan\FastRecommender\Model\Relation;
 use Aldeebhasan\FastRecommender\RecommenderManager;
-use Aldeebhasan\FastRecommender\Similarity\Cosine;
-use Aldeebhasan\FastRecommender\Similarity\WeightedCosine;
+use Aldeebhasan\FastRecommender\Similarity\SlopeOne;
 use Aldeebhasan\FastRecommender\Test\TestCase;
 
 class test extends TestCase
@@ -53,7 +51,7 @@ class test extends TestCase
         $manager->addRating(3, 'nautilus', 0.4);
         $manager->addRating(4, 'nautilus', 0.5);
         $recomanded = $manager->getItemBasedRecommender(Relation::TYPE_RATE)
-            ->setSimilarityFunction(Cosine::class,true)
+            ->setSimilarityFunction(SlopeOne::class, true)
             ->train()
             ->recommendTo('squid');
         self::assertIsArray($recomanded);

@@ -10,6 +10,7 @@ class WeightedCosine extends AbstractSimilarity
 
     protected function afterConstructHook(): void
     {
+        //calculate the weight of each user rating based on their total number of ratings.
         $total = 0;
         foreach ($this->data as $targets) {
             $targets = array_keys($targets);
