@@ -2,23 +2,14 @@
 
 namespace Aldeebhasan\FastRecommender\Recommender;
 
-class UserBasedRecommender implements RecommenderIU
+class UserBasedRecommender extends AbstractRecommender
 {
-    private array $similarityMatrix = [];
-
-    public function construct(?string $type): self
-    {
-
-        return $this;
-    }
-
     public function train(): self
     {
-
         return $this;
     }
 
-    public function recommendTo(array|int $data, $top = 1): array
+    public function recommendTo(array|string|int $data, $top = 1): array
     {
         // Generate recommendations based on user's purchase history
         $recommendations = [];

@@ -6,10 +6,8 @@ use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Schema\Blueprint;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-
 abstract class TestCase extends BaseTestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -24,12 +22,11 @@ abstract class TestCase extends BaseTestCase
         $db = new DB();
         $db->addConnection([
             'driver' => 'sqlite',
-            'database' => ':memory:'
+            'database' => ':memory:',
         ]);
         $db->setAsGlobal();
         $db->bootEloquent();
     }
-
 
     private function migrate()
     {
@@ -49,5 +46,4 @@ abstract class TestCase extends BaseTestCase
     {
         // seed some data if required
     }
-
 }

@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Relation extends Model
 {
-    const TYPE_PURCHASE = 'purchase';
-    const TYPE_RATE = 'rate';
-    const TYPE_SHOP = 'shop';
-    const TYPE_BOOKMARK = 'bookmark';
+    public const TYPE_PURCHASE = 'purchase';
+
+    public const TYPE_RATE = 'rate';
+
+    public const TYPE_SHOP = 'shop';
+
+    public const TYPE_BOOKMARK = 'bookmark';
 
     protected $table = 'rs_relations';
 

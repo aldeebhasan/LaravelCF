@@ -2,9 +2,9 @@
 
 namespace Aldeebhasan\FastRecommender;
 
+use Aldeebhasan\FastRecommender\Contracts\RecommenderIU;
 use Aldeebhasan\FastRecommender\Model\Relation;
 use Aldeebhasan\FastRecommender\Recommender\ItemBasedRecommender;
-use Aldeebhasan\FastRecommender\Recommender\RecommenderIU;
 use Aldeebhasan\FastRecommender\Recommender\UserBasedRecommender;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,45 +20,45 @@ class RecommenderManager
     public function getItemBasedRecommender(string $type): RecommenderIU
     {
         return (new ItemBasedRecommender())
-            ->construct($type)
-            ->train();
+            ->construct($type);
     }
 
-    public function getUserBasedRecommender(): RecommenderIU
+    public function getUserBasedRecommender(string $type): RecommenderIU
     {
-        return new UserBasedRecommender();
+        return (new UserBasedRecommender())
+            ->construct($type);
     }
 
-    public function addPurchase(int|Model $user, int|Model $item, float $amount)
+    public function addPurchase(int|string|Model $user, int|string|Model $item, float $amount)
     {
         $this->addRelation($user, $item, $amount, Relation::TYPE_PURCHASE);
     }
 
-    public function addCartAddition(int|Model $user, int|Model $item, float $amount)
+    public function addCartAddition(int|string|Model $user, int|string|Model $item, float $amount)
     {
         $this->addRelation($user, $item, $amount, Relation::TYPE_SHOP);
     }
 
-    public function addRating(int|Model $user, int|Model $item, float $amount)
+    public function addRating(int|string|Model $user, int|string|Model $item, float $amount)
     {
         $this->addRelation($user, $item, $amount, Relation::TYPE_RATE);
     }
 
-    public function addBookmark(int|Model $user, int|Model $item, float $amount)
+    public function addBookmark(int|string|Model $user, int|string|Model $item, float $amount)
     {
         $this->addRelation($user, $item, $amount, Relation::TYPE_BOOKMARK);
     }
 
-    private function addRelation(int|Model $user, int|Model $item, float $amount, string $type)
+    private function addRelation(int|string|Model $user, int|string|Model $item, float $amount, string $type)
     {
         $source = $user instanceof Model ? $user->id : $user;
         $target = $item instanceof Model ? $item->id : $item;
         Relation::updateOrCreate([
             'source' => $source,
             'target' => $target,
-            'type' => $type
+            'type' => $type,
         ], [
-            'value' => $amount
+            'value' => $amount,
         ]);
     }
 }
