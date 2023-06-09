@@ -3,10 +3,11 @@
 namespace Aldeebhasan\LaravelCF\Contracts;
 
 use Aldeebhasan\LaravelCF\Enums\MissingValue;
+use Aldeebhasan\LaravelCF\Enums\RelationType;
 
 interface RecommenderIU
 {
-    public function construct(string $type): self;
+    public function construct(RelationType $type): self;
 
     public function train(): self;
 

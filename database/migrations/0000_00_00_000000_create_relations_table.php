@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->bigInteger('source')->index();
             $table->bigInteger('target')->index();
-            $table->string('type', 10);
+            $table->string('type', 10)->index();
             $table->string('value', 25);
             $table->timestamps();
         });

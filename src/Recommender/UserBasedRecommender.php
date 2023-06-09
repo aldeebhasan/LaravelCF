@@ -2,21 +2,23 @@
 
 namespace Aldeebhasan\LaravelCF\Recommender;
 
+use Aldeebhasan\LaravelCF\Enums\RelationType;
+use Aldeebhasan\LaravelCF\Models\Relation;
+use Aldeebhasan\LaravelCF\Similarity\Cosine;
+
 class UserBasedRecommender extends AbstractRecommender
 {
-    public function train(): self
+    public function construct(RelationType $type): AbstractRecommender
     {
+        $this->data = Relation::where('type', $type)->get()->groupBy('source')
+            ->mapWithKeys(function ($targets, $source) {
+                return [
+                    //ex : [user => [item=>rating]]
+                    $source => $targets->mapWithKeys(fn ($item) => [$item->target => $item->value]),
+                ];
+            })->toArray();
+        $this->similarityFn = new Cosine($this->data);
+
         return $this;
-    }
-
-    public function recommendTo(array|string|int $data, $top = 1): array
-    {
-        // Generate recommendations based on user's purchase history
-        $recommendations = [];
-
-        // Sort recommendations by similarity score
-        arsort($recommendations);
-        // Get top N recommendations
-        return array_slice($recommendations, 0, $top, true);
     }
 }

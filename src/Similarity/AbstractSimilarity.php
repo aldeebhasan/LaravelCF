@@ -9,7 +9,7 @@ abstract class AbstractSimilarity implements SimilarityIU
 {
     public function __construct(
         protected array $data,
-        protected bool $fillMissingValue = false,
+        protected bool $fillMissingValue = true,
         protected MissingValue $fillingMethod = MissingValue::ZERO,
     ) {
         $this->afterConstructHook();
@@ -29,6 +29,8 @@ abstract class AbstractSimilarity implements SimilarityIU
             $missingB = array_fill_keys(array_keys(array_diff_key($a, $b)), $this->getMissingValue($b));
             $a = $a + $missingA;
             $b = $b + $missingB;
+            ksort($a);
+            ksort($b);
         } else {
             $a = array_intersect_key($a, $b);
             $b = array_intersect_key($b, $a);
@@ -49,5 +51,17 @@ abstract class AbstractSimilarity implements SimilarityIU
             default:
                 return 0;
         }
+    }
+
+    protected function transpose(): array
+    {
+        $out = [];
+        foreach ($this->data as $item => $ratings) {
+            foreach ($ratings as $key => $value) {
+                $out[$key][$item] = $value;
+            }
+        }
+
+        return $out;
     }
 }

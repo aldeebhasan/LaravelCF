@@ -10,6 +10,15 @@ class Cosine extends AbstractSimilarity
     {
         list($a, $b) = $this->prepareInputVectors($a, $b);
 
+        if (\count($a) === 1 && \end($a) == 0 &&
+            \count($b) === 1 && \end($b) == 0) {
+            return 1;
+        }
+        //give very low similarity for none-evaluated items
+        if (\count($a) == 0 || count($b) == 0) {
+            return -100;
+        }
+
         return round(Distance::cosineSimilarity($a, $b), 2);
     }
 }

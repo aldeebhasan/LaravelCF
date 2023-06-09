@@ -51,5 +51,8 @@
       "aliases": {
       }
     }
+  },
+  "scripts": {
+    "fix": "php-cs-fixer fix src"
   }
 }
