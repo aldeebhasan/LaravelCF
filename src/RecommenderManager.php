@@ -11,13 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class RecommenderManager
 {
-    private static $instance = null;
-
-    public static function make(): static
-    {
-        return self::$instance = self::$instance ?: new static();
-    }
-
     public function getItemBasedRecommender(RelationType $type): RecommenderIU
     {
         return (new ItemBasedRecommender())

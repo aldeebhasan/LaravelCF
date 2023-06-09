@@ -1,4 +1,4 @@
-Laravel Recomandation system
+Laravel Recommendation system
 =====
 A php package allow you to find the est recommendation of your modules
 

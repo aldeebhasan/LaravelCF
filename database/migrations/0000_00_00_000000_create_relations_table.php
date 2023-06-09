@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('rs_relations', function (Blueprint $table) {
+        Schema::create('rs_relations', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('source')->index();
             $table->bigInteger('target')->index();
