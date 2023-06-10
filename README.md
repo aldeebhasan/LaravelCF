@@ -20,7 +20,7 @@ In general we have two kind of recommender included in this package:
 - item-based recommender
 - user-based recommender
 
-##Filling the data
+## Filling the data
 The first step to build your recommendation system is to provide the dataset you want to work with.
 
 In LarvelCF we have 4 type of data (PURCHASE, RATE, CART_ACTION, BOOKMARK). the purpose of these types is to enable you to handle different types of
@@ -36,7 +36,7 @@ Recommender::addCartAddition('user_1', 'product_1', 2); // like the quantity
 Recommender::addPurchase    ('user_1', 'product_1', 5); // like the quantity
 Recommender::addBookmark    ('user_1', 'product_1', 5);
 ```
-##Instantiate the recommender
+## Instantiate the recommender
 After entering your data, you can instantiate your desired recommender using our support facade:
 
 ```php
@@ -48,7 +48,7 @@ Recommender::getItemBasedRecommender(RelationType::RATE); // to recommend simila
 //OR
 Recommender::getUserBasedRecommender(RelationType::RATE);// to recommend similar users
 ```
-##Get recommendations
+## Get recommendations
 
 Finally, to make your recommendations you will run the following code:
 
@@ -91,7 +91,7 @@ Recommender::getItemBasedRecommender(RelationType::RATE)
             ->setSimilarityFunction(SlopeOne::class,MissingValue::MEAN,true)
             
 ```
-##Full Example
+## Full Example
 ```php
 use \Aldeebhasan\LaravelCF\Facades\Recommender;
 use \Aldeebhasan\LaravelCF\Enums\RelationType;
