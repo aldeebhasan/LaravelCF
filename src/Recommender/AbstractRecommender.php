@@ -21,12 +21,12 @@ class AbstractRecommender implements RecommenderIU
         return $this;
     }
 
-    public function setSimilarityFunction(string $similarity, $fillMissingValue = true, $fillingMethod = MissingValue::ZERO): self
+    public function setSimilarityFunction(string $similarity, $fillingMethod = MissingValue::ZERO, $shouldFill = true): self
     {
         if (! class_exists($similarity)) {
             throw new InvalidArgumentException('Similarity class not found');
         }
-        $this->similarityFn = new $similarity($this->data, $fillMissingValue, $fillingMethod);
+        $this->similarityFn = new $similarity($this->data, $fillingMethod, $shouldFill);
 
         return $this;
     }

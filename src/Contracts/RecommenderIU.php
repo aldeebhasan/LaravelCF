@@ -13,5 +13,5 @@ interface RecommenderIU
 
     public function recommendTo(array|string|int $sources, $top = 10): array;
 
-    public function setSimilarityFunction(string $similarity, $missing = MissingValue::ZERO): self;
+    public function setSimilarityFunction(string $similarity, $fillingMethod = MissingValue::ZERO, $shouldFill = true): self;
 }

@@ -9,7 +9,7 @@ class CosineCentered extends Cosine
     protected function prepareInputVectors(array $a, array $b): array
     {
         $this->fillingMethod = MissingValue::ZERO;
-        $this->fillMissingValue = true;
+        $this->shouldFill = true;
         list($a, $b) = parent::prepareInputVectors($a, $b);
         $avgA = array_sum($a) / count($a);
         $avgB = array_sum($b) / count($b);

@@ -2,14 +2,15 @@
 
 namespace Aldeebhasan\LaravelCF\Facades;
 
+use Aldeebhasan\LaravelCF\Contracts\RecommenderIU;
 use Aldeebhasan\LaravelCF\Enums\RelationType;
 use Aldeebhasan\LaravelCF\RecommenderManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static RecommenderManager getItemBasedRecommender(RelationType $type)
- * @method static RecommenderManager getUserBasedRecommender(RelationType $type)
+ * @method static RecommenderIU getItemBasedRecommender(RelationType $type)
+ * @method static RecommenderIU getUserBasedRecommender(RelationType $type)
  * @method static RecommenderManager addPurchase(int|string|Model $user, int|string|Model $item, float $amount)
  * @method static RecommenderManager addCartAddition(int|string|Model $user, int|string|Model $item, float $amount)
  * @method static RecommenderManager addRating(int|string|Model $user, int|string|Model $item, float $amount)

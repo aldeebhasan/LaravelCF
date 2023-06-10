@@ -2,6 +2,7 @@
 
 namespace Aldeebhasan\LaravelCF\Test\Unit;
 
+use Aldeebhasan\LaravelCF\Enums\MissingValue;
 use Aldeebhasan\LaravelCF\Enums\RelationType;
 use Aldeebhasan\LaravelCF\Facades\Recommender;
 use Aldeebhasan\LaravelCF\Models\Relation;
@@ -50,9 +51,10 @@ class RecommenderManagerTest extends TestCase
         Recommender::addRating(3, 'nautilus', 0.4);
         Recommender::addRating(4, 'nautilus', 0.5);
         $recomanded = Recommender::getItemBasedRecommender(RelationType::RATE)
-            ->setSimilarityFunction(CosineWeighted::class, true)
+            ->setSimilarityFunction(CosineWeighted::class, MissingValue::MEAN)
             ->train()
             ->recommendTo('squid');
+
         self::assertIsArray($recomanded);
     }
 }

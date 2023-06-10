@@ -6,6 +6,6 @@ enum RelationType: string
 {
     case PURCHASE = 'purchase';
     case RATE = 'rate';
-    case SHOP = 'shop';
+    case CART_ACTION = 'cart-action';
     case BOOKMARK = 'bookmark';
 }

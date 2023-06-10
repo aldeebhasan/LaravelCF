@@ -30,7 +30,7 @@ class RecommenderManager
 
     public function addCartAddition(int|string|Model $user, int|string|Model $item, float $amount)
     {
-        $this->addRelation($user, $item, $amount, RelationType::SHOP);
+        $this->addRelation($user, $item, $amount, RelationType::CART_ACTION);
     }
 
     public function addRating(int|string|Model $user, int|string|Model $item, float $amount)

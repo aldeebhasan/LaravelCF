@@ -9,8 +9,8 @@ abstract class AbstractSimilarity implements SimilarityIU
 {
     public function __construct(
         protected array $data,
-        protected bool $fillMissingValue = true,
         protected MissingValue $fillingMethod = MissingValue::ZERO,
+        protected bool $shouldFill = true,
     ) {
         $this->afterConstructHook();
     }
@@ -24,7 +24,7 @@ abstract class AbstractSimilarity implements SimilarityIU
 
     protected function prepareInputVectors(array $a, array $b): array
     {
-        if ($this->fillMissingValue) {
+        if ($this->shouldFill) {
             $missingA = array_fill_keys(array_keys(array_diff_key($b, $a)), $this->getMissingValue($a));
             $missingB = array_fill_keys(array_keys(array_diff_key($a, $b)), $this->getMissingValue($b));
             $a = $a + $missingA;
