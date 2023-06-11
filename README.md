@@ -60,7 +60,7 @@ use \Aldeebhasan\LaravelCF\Enums\RelationType;
 Recommender::getItemBasedRecommender(RelationType::RATE)
             ->setSimilarityFunction(Cosine::class)
             ->train()
-            ->recommendTo('user_1')
+            ->recommendTo('user_1');
 ```
 
 For the `setSimilarityFunction`, you can provide the similarity algorithm, the missing value default values, and weather you want to fill the missing
@@ -71,6 +71,8 @@ Available Similarity algorithm:
 - Cosine::class (package default)
 - CosineCentered::class
 - CosineWeighted::class
+- Jaccard::class
+- SlopeOne::class
 
 Available missing values replacement methods:
 
