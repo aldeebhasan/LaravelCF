@@ -2,7 +2,7 @@
   "name": "aldeebhasan/laravelcf",
   "description": "This package will allow you to make fast recommendation based on custom inputs",
   "type": "library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "keywords": [
     "recommendation",

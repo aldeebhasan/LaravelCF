@@ -11,6 +11,11 @@ Install using composer:
 composer require aldeebhasan/laravelcf
 ```
 
+The run :
+```bash
+php artisan migrate
+```
+
 Basic Usage
 -----------
 LarvelCF package allow you to recommend data based on many algorithms including (Cosine,Weighted Cosine, Centered Cosine, SlopeOne).
