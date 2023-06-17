@@ -40,7 +40,6 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^9.6",
-    "laravel/framework": "^10.0",
     "orchestra/testbench": "8.x-dev"
   },
   "extra": {
