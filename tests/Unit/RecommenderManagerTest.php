@@ -6,8 +6,8 @@ use Aldeebhasan\LaravelCF\Enums\MissingValue;
 use Aldeebhasan\LaravelCF\Enums\RelationType;
 use Aldeebhasan\LaravelCF\Facades\Recommender;
 use Aldeebhasan\LaravelCF\Models\Relation;
-use Aldeebhasan\LaravelCF\Similarity\Cosine;
 use Aldeebhasan\LaravelCF\Similarity\CosineWeighted;
+use Aldeebhasan\LaravelCF\Similarity\Pearson;
 use Aldeebhasan\LaravelCF\Test\TestCase;
 
 class RecommenderManagerTest extends TestCase
@@ -23,15 +23,17 @@ class RecommenderManagerTest extends TestCase
         Recommender::addRating('user_1', 2, 1);
         Recommender::addRating('user_1', 4, 2);
         Recommender::addRating('user_1', 5, 5);
-        Recommender::addRating('user_2', 5, 3);
-        Recommender::addRating('user_3', 7, 5);
+        Recommender::addRating('user_2', 8, 5);
+        Recommender::addRating('user_2', 5, 5);
+        Recommender::addRating('user_3', 1, 5);
         Recommender::addRating('user_3', 8, 4);
         Recommender::addRating('user_4', 5, 4);
         Recommender::addRating('user_4', 1, 4);
         $recomanded = Recommender::getUserBasedRecommender(RelationType::RATE)
-            ->setSimilarityFunction(Cosine::class)
+//            ->setSimilarityFunction(Pearson::class)
             ->train()
-            ->recommendTo('user_1');
+            ->recommendTo('user_2');
+
         self::assertIsArray($recomanded);
     }
 
@@ -52,6 +54,7 @@ class RecommenderManagerTest extends TestCase
         Recommender::addRating(4, 'nautilus', 0.5);
         $recomanded = Recommender::getItemBasedRecommender(RelationType::RATE)
             ->setSimilarityFunction(CosineWeighted::class, MissingValue::MEAN)
+//            ->setSimilarityFunction(Pearson::class)
             ->train()
             ->recommendTo('squid');
 

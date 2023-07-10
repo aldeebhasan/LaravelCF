@@ -2,7 +2,7 @@
 
 namespace Aldeebhasan\LaravelCF\Similarity;
 
-class Cosine extends AbstractSimilarity
+class Pearson extends AbstractSimilarity
 {
     public function getSimilarity(array $a, array $b): float
     {
@@ -17,8 +17,15 @@ class Cosine extends AbstractSimilarity
             return -100;
         }
 
-        $cosine = 1 - (dotProduct($a, $b) / (l2Norm($a) * l2Norm($b)));
+        $meanA = mean($a);
+        $meanB = mean($b);
+        $numerator = array_sum(array_map(fn ($x, $y) => ($x - $meanA) * ($y - $meanB), $a, $b));
+        $denominator = sqrt(diff_from_mean($a) * diff_from_mean($b));
 
-        return round(1 - $cosine, 2);
+        if ($denominator == 0) {
+            return 0;
+        }
+
+        return round($numerator / $denominator, 3);
     }
 }

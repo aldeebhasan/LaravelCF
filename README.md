@@ -68,11 +68,12 @@ methods or discard them.
 
 Available Similarity algorithm:
 
-- Cosine::class (package default)
+- Cosine::class (default for item-based)
 - CosineCentered::class
 - CosineWeighted::class
 - Jaccard::class
 - SlopeOne::class
+- Pearson::class (default for user-based)
 
 Available missing values replacement methods:
 
