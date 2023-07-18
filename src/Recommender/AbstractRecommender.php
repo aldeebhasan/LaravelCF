@@ -47,5 +47,7 @@ abstract class AbstractRecommender implements RecommenderIU
         return $this;
     }
 
-    abstract public function recommendTo(array|string|int $sources, $top = 10): array;
+    abstract public function recommendTo(array|string|int $sources, $top = 10, $except = []): array;
+
+    abstract public function userItemSimilarity($user, $item): float;
 }

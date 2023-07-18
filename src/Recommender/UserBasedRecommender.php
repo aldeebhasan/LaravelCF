@@ -27,49 +27,50 @@ class UserBasedRecommender extends AbstractRecommender
         return $this;
     }
 
-    public function recommendTo(array|int|string $sources, $top = 10): array
+    public function recommendTo(array|int|string $sources, $top = 10, $except = []): array
     {
         $sources = (array) $sources;
         $recommendations = [];
 
         foreach ($this->items as $item) {
-            if (in_array($item, array_keys($this->data[$sources[0]]))) {
-                continue;
-            }
+            if (in_array($item, array_keys($this->data[$sources[0]]))) continue;
 
             $weightedSum = 0;
             $totalSimilarity = 0;
             foreach ($sources as $source) {
                 if (isset($this->similarityMatrix[$source])) {
                     $totalSimilarity += 1;
-                    $weightedSum += $this->getUserItemSimilarity($item, $source);
+                    $weightedSum += $this->userItemSimilarity($source, $item);
                 }
             }
             if ($totalSimilarity > 0) {
                 $recommendations[$item] = round($weightedSum / $totalSimilarity, 2);
             }
         }
+        $recommendations = array_diff($recommendations, $except);
         arsort($recommendations);
 
         return array_slice($recommendations, 0, $top, true);
     }
 
-    private function getUserItemSimilarity($item, $user): float
+    public function userItemSimilarity($user, $item): float
     {
         //get top n neighbours
-        $users = $this->similarityMatrix[$user];
+        $users = $this->similarityMatrix[$user] ?? [];
         arsort($users);
         $nearestNeighbours = array_slice($users, 0, $this->neibours, true);
 
         //calculate the similarity based on the selected neighbours
-        $avg = mean($this->data[$user]);
-        $weightAvg = mean($this->similarityMatrix[$user]);
+        $avg = mean($this->data[$user] ?? []);
+        $weightAvg = mean($this->similarityMatrix[$user] ?? []);
 
         $similarity = 0;
         foreach (array_keys($nearestNeighbours) as $neighbour) {
+            if (! isset($this->data[$neighbour][$item])) continue;
             $neighbourAvg = mean($this->data[$neighbour]);
             $similarity += (($this->data[$neighbour][$item] ?? 0) - $neighbourAvg) * $this->similarityMatrix[$user][$neighbour];
         }
+        if ($similarity == 0) return 0;
 
         return $avg + ($similarity / $weightAvg);
     }

@@ -37,6 +37,33 @@ class RecommenderManagerTest extends TestCase
         self::assertIsArray($recomanded);
     }
 
+    public function test_user_item_similarity_item_based()
+    {
+        Recommender::addRating('user_1', 2, 1);
+        Recommender::addRating('user_1', 4, 2);
+        Recommender::addRating('user_1', 5, 5);
+        Recommender::addRating('user_2', 8, 5);
+        Recommender::addRating('user_2', 2, 3);
+        Recommender::addRating('user_2', 5, 5);
+        $similarity = Recommender::getItemBasedRecommender(RelationType::RATE)
+            ->train()
+            ->userItemSimilarity('user_2', 8);
+        self::assertIsFloat($similarity);
+    }
+
+    public function test_user_item_similarity_user_based()
+    {
+        Recommender::addRating('user_1', 2, 1);
+        Recommender::addRating('user_1', 4, 2);
+        Recommender::addRating('user_1', 5, 5);
+        Recommender::addRating('user_2', 8, 5);
+        Recommender::addRating('user_2', 5, 5);
+        $similarity = Recommender::getUserBasedRecommender(RelationType::RATE)
+            ->train()
+            ->userItemSimilarity('user_2', 2);
+        self::assertIsFloat($similarity);
+    }
+
     public function test_item_to_item_recommendation()
     {
         Recommender::addRating(1, 'squid', 1);

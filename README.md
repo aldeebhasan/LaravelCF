@@ -94,6 +94,25 @@ Recommender::getItemBasedRecommender(RelationType::RATE)
             ->setSimilarityFunction(SlopeOne::class,MissingValue::MEAN,true)
             
 ```
+
+## Get User-Item similarity
+
+based on any recommender, you can find the similarity between any user and item as follows:
+```php
+use \Aldeebhasan\LaravelCF\Facades\Recommender;
+use \Aldeebhasan\LaravelCF\Enums\RelationType;
+
+Recommender::getItemBasedRecommender(RelationType::RATE)
+            ->setSimilarityFunction(Cosine::class)
+            ->train()
+            ->userItemSimilarity('user_1','product_1');
+
+/**
+user-item similarity: 
+1.5 (float)
+**/
+```
+
 ## Full Example
 ```php
 use \Aldeebhasan\LaravelCF\Facades\Recommender;
