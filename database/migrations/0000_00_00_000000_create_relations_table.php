@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('rs_relations', function (Blueprint $table) {
             $table->id();
+            $table->string('group', 100)->index();
             $table->bigInteger('source')->index();
             $table->bigInteger('target')->index();
             $table->string('type', 10)->index();

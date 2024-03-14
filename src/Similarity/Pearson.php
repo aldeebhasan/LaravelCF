@@ -20,7 +20,7 @@ class Pearson extends AbstractSimilarity
         $meanA = mean($a);
         $meanB = mean($b);
         $numerator = array_sum(array_map(fn ($x, $y) => ($x - $meanA) * ($y - $meanB), $a, $b));
-        $denominator = sqrt(diff_from_mean($a) * diff_from_mean($b));
+        $denominator = sqrt(diffFromMean($a) * diffFromMean($b));
 
         if ($denominator == 0) {
             return 0;

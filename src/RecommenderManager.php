@@ -23,31 +23,35 @@ class RecommenderManager
             ->construct($type);
     }
 
-    public function addPurchase(int|string|Model $user, int|string|Model $item, float $amount)
+    public function addPurchase(int|string|Model $user, int|string|Model $item, float $amount, string $group = '*')
     {
-        $this->addRelation($user, $item, $amount, RelationType::PURCHASE);
+        $this->addRelation($user, $item, $amount, RelationType::PURCHASE, $group);
     }
 
-    public function addCartAddition(int|string|Model $user, int|string|Model $item, float $amount)
+    public function addCartAddition(int|string|Model $user, int|string|Model $item, float $amount, string $group = '*')
     {
-        $this->addRelation($user, $item, $amount, RelationType::CART_ACTION);
+        $this->addRelation($user, $item, $amount, RelationType::CART_ACTION, $group);
     }
 
-    public function addRating(int|string|Model $user, int|string|Model $item, float $amount)
+    public function addRating(int|string|Model $user, int|string|Model $item, float $amount, string $group = '*')
     {
-        $this->addRelation($user, $item, $amount, RelationType::RATE);
+        $this->addRelation($user, $item, $amount, RelationType::RATE, $group);
     }
 
-    public function addBookmark(int|string|Model $user, int|string|Model $item, float $amount)
+    public function addBookmark(int|string|Model $user, int|string|Model $item, float $amount, string $group = '*')
     {
-        $this->addRelation($user, $item, $amount, RelationType::BOOKMARK);
+        $this->addRelation($user, $item, $amount, RelationType::BOOKMARK, $group);
     }
 
-    public function remove(int|string|Model $user, int|string|Model $item, RelationType $type = null)
+    public function remove(int|string|Model $user, int|string|Model $item, RelationType $type = null, string $group = '*')
     {
+        $source = $user instanceof Model ? $user->id : $user;
+        $target = $item instanceof Model ? $item->id : $item;
+
         Relation::where([
-            'source' => $user,
-            'target' => $item,
+            'group' => $group,
+            'source' => $source,
+            'target' => $target,
         ])->when($type, fn ($q) => $q->where('type', $type))
             ->delete();
     }
@@ -57,11 +61,12 @@ class RecommenderManager
         Relation::truncate();
     }
 
-    private function addRelation(int|string|Model $user, int|string|Model $item, float $amount, RelationType $type)
+    private function addRelation(int|string|Model $user, int|string|Model $item, float $amount, RelationType $type, string $group = '*')
     {
         $source = $user instanceof Model ? $user->id : $user;
         $target = $item instanceof Model ? $item->id : $item;
         Relation::updateOrCreate([
+            'group' => $group,
             'source' => $source,
             'target' => $target,
             'type' => $type,

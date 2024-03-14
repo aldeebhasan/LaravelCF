@@ -21,24 +21,17 @@ if (! function_exists('variance')) {
     {
         $N = count($array);
 
-        return diff_from_mean($array) / ($N);
+        return diffFromMean($array) / ($N);
     }
 }
-if (! function_exists('diff_from_mean')) {
-    function diff_from_mean($array, $squared = true): float|int
+if (! function_exists('diffFromMean')) {
+    function diffFromMean($array, $squared = true): float|int
     {
         $mean = mean($array);
 
         return array_sum(array_map(fn ($x) => pow($x - $mean, $squared ? 2 : 1), $array));
     }
 }
-if (! function_exists('dotProduct')) {
-    function dotProduct($A, $B): float|int
-    {
-        return array_sum(array_map(fn ($x, $y) => $x * $y, $A, $B));
-    }
-}
-
 if (! function_exists('dotProduct')) {
     function dotProduct($A, $B): float|int
     {

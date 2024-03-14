@@ -12,16 +12,16 @@ class UserBasedRecommender extends AbstractRecommender
 
     private $items = [];
 
-    public function construct(RelationType $type): AbstractRecommender
+    public function construct(RelationType $type, $group = '*'): AbstractRecommender
     {
-        $this->data = Relation::where('type', $type)->get()->groupBy('source')
+        $this->data = Relation::where(['type' => $type, 'group' => $group])->get()->groupBy('source')
             ->mapWithKeys(function ($targets, $source) {
                 return [
                     //ex : [user => [item=>rating]]
                     $source => $targets->mapWithKeys(fn ($item) => [$item->target => $item->value]),
                 ];
             })->toArray();
-        $this->items = Relation::where('type', $type)->pluck('target')->toArray();
+        $this->items = Relation::where(['type' => $type, 'group' => $group])->pluck('target')->toArray();
         $this->similarityFn = (new Pearson($this->data));
 
         return $this;

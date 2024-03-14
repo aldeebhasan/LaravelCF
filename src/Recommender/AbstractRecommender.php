@@ -16,11 +16,6 @@ abstract class AbstractRecommender implements RecommenderIU
 
     protected SimilarityIU $similarityFn;
 
-    public function construct(RelationType $type): self
-    {
-        return $this;
-    }
-
     public function setSimilarityFunction(string $similarity, $fillingMethod = MissingValue::ZERO, $shouldFill = true): self
     {
         if (! class_exists($similarity)) {
@@ -46,6 +41,8 @@ abstract class AbstractRecommender implements RecommenderIU
 
         return $this;
     }
+
+    abstract public function construct(RelationType $type): self;
 
     abstract public function recommendTo(array|string|int $sources, $top = 10, $except = []): array;
 

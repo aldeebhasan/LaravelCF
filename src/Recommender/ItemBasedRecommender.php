@@ -10,9 +10,9 @@ class ItemBasedRecommender extends AbstractRecommender
 {
     private $neibours = 25;
 
-    public function construct(RelationType $type): AbstractRecommender
+    public function construct(RelationType $type, $group = '*'): AbstractRecommender
     {
-        $this->data = Relation::where('type', $type)->get()->groupBy('target')
+        $this->data = Relation::where(['type' => $type, 'group' => $group])->get()->groupBy('target')
             ->mapWithKeys(function ($targets, $source) {
                 return [
                     //ex : [item => [user=>rating]]
